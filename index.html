@@ -238,7 +238,7 @@
     </section>
 
 
-    <!-- Deep Features: Horizontal scroll section -->
+    <!-- Deep Features: Horizontal scroll section (Desktop only) -->
     <section id="deep-features" class="hs separator">
       <div class="hs__outer" aria-hidden="true">
         <div class="container section-head">
@@ -255,7 +255,10 @@
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <img src="asset/images/folderCleanerOutcome.png" alt="One‑click organizer result" />
+                    <picture>
+                      <source srcset="asset/images/folderCleanerOutcome.webp" type="image/webp">
+                      <img src="asset/images/folderCleanerOutcome.png" alt="One‑click organizer result" />
+                    </picture>
                   </div>
                 </div>
               </div>
@@ -268,38 +271,61 @@
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <img src="asset/images/savedProject.png" alt="Project Selection UI" />
+                    <picture>
+                      <source srcset="asset/images/savedProject.webp" type="image/webp">
+                      <img src="asset/images/savedProject.png" alt="Project Selection UI" />
+                    </picture>
                   </div>
                 </div>
               </div>
             </li>
             <li class="hs__panel">
-              <div class="panel-card">
+              <div class="panel-card" id="neverSleep">
                 <div class="panel-copy">
                   <h3 class="h2">Your Digital Assistant Never Sleeps</h3>
                   <p class="sub">Press Start and feel the relief. While you're designing, coding, or in client meetings, Neatify works behind the scenes. Every screenshot, every download, every asset gets moved to exactly where it belongs.</p>
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <img src="asset/images/homeScreen.png" alt="Start sorting from the app home" />
+                    <picture>
+                      <source srcset="asset/images/homeScreen.webp" type="image/webp">
+                      <img src="asset/images/homeScreen.png" alt="Start sorting from the app home" />
+                    </picture>
                   </div>
                 </div>
               </div>
             </li>
             <li class="hs__panel">
-              <div class="panel-card">
+              <div class="panel-card" id="setRules">
                 <div class="panel-copy">
                   <h3 class="h2">Set Rules Once, Organized Forever</h3>
                   <p class="sub">Create simple rules like "PDFs → Documents folder" and "Images → Current project visuals." Set them once, forget them forever. No projects needed, no complex setup. Just pure automation that learns your workflow and keeps your files flowing exactly where you want them, every single time.</p>
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <img src="asset/images/savedRules.png" alt="Custom rules creation interface" />
+                    <picture>
+                      <source srcset="asset/images/savedRules.webp" type="image/webp">
+                      <img src="asset/images/savedRules.png" alt="Custom rules creation interface" />
+                    </picture>
                   </div>
                 </div>
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Features: Optimized for touch devices -->
+    <section class="features-mobile separator">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="h2">See Your Chaos Transform Into Order</h2>
+          <p class="section-sub">Watch how Neatify turns digital disasters into organized perfection.</p>
+        </div>
+
+        <div class="features-mobile-grid" id="mobile-features-content">
+          <!-- Content loaded conditionally via JavaScript for performance -->
         </div>
       </div>
     </section>
@@ -310,7 +336,7 @@
         <h2 class="h2">Built for Real-World File Chaos</h2>
       </div>
       <div class="card-grid six">
-        <article class="card soft reveal-up"><div class="card-head"><span class="icon-wrap"><svg class="icon"><use href="#icon-folder"/></svg></span><h4>350+ File Types Supported</h4></div><p>From PSD to HEIC, from Python to Swift, from MP4 to WebM—Neatify recognizes virtually every file format you use.</p></article>
+        <article class="card soft reveal-up"><div class="card-head"><span class="icon-wrap"><svg class="icon"><use href="#icon-folder"/></svg></span><h4>350+ File Types Supported</h4></div><p>From PSD to HEIC, from Python to Swift, from MP4 to WebM, Neatify recognizes virtually every file format you use.</p></article>
         <article class="card soft reveal-up"><div class="card-head"><span class="icon-wrap"><svg class="icon"><use href="#icon-sort"/></svg></span><h4>Date bucketing</h4></div><p>Optional year/month folders to keep archives tidy.</p></article>
         <article class="card soft reveal-up"><div class="card-head"><span class="icon-wrap"><svg class="icon"><use href="#icon-rules"/></svg></span><h4>Live Downloads redirection</h4></div><p>New files move out of Downloads into the right destinations.</p></article>
         <article class="card soft reveal-up"><div class="card-head"><span class="icon-wrap"><svg class="icon"><use href="#icon-project"/></svg></span><h4>Multi‑project switcher</h4></div><p>Change focus with one click; sorting follows your current project.</p></article>
@@ -449,46 +475,46 @@
               </div>
             </summary>
             <div class="faq-answer">
-              <p>Absolutely safe. Neatify only moves files—never edits, modifies, or deletes anything. Your files remain exactly the same, just organized. If you ever stop using Neatify, all your organized files stay right where they are.</p>
+              <p>Absolutely safe. Neatify only moves files, never edits, modifies, or deletes anything. Your files remain exactly the same, just organized. If you ever stop using Neatify, all your organized files stay right where they are.</p>
             </div>
           </details>
 
           <details class="faq-item reveal-up separator">
             <summary class="faq-question">
-              <span class="question-text">I've tried organizing before and always fall back into chaos. Will this actually stick?</span>
+              <span class="question-text">Will Neatify slow down my Mac or use a lot of battery?</span>
               <div class="question-indicator">
                 <div class="indicator-line horizontal"></div>
                 <div class="indicator-line vertical"></div>
               </div>
             </summary>
             <div class="faq-answer">
-              <p>This is different. Neatify doesn't rely on your discipline—it works automatically. Once you set preferences, the app handles everything. No willpower required, no habits to maintain. It's impossible to fall back into chaos because the system prevents it from happening.</p>
+              <p>Neatify uses just 40-60MB of memory, lighter than a single browser tab. It runs silently in the background without affecting your Mac's speed, battery, or performance. You'll forget it's even there.</p>
             </div>
           </details>
 
           <details class="faq-item reveal-up separator">
             <summary class="faq-question">
-              <span class="question-text">What happens to my current disaster of a Downloads folder?</span>
+              <span class="question-text">How long does it take to set up and see results?</span>
               <div class="question-indicator">
                 <div class="indicator-line horizontal"></div>
                 <div class="indicator-line vertical"></div>
               </div>
             </summary>
             <div class="faq-answer">
-              <p>Our One-Click Organizer transforms any messy folder instantly. Years of accumulated chaos become organized categories in under 60 seconds. No manual sorting, no decisions required. Just point, click, done.</p>
+              <p>Instant results. Download, grant folder access, and you're organizing files in under 2 minutes. The One-Click Organizer transforms messy folders immediately. Set up custom rules once, then just press Start whenever you want to start organizing.</p>
             </div>
           </details>
 
           <details class="faq-item reveal-up separator">
             <summary class="faq-question">
-              <span class="question-text">Do I need to keep the app open all the time?</span>
+              <span class="question-text">Why does file organization cost money when I can do it manually?</span>
               <div class="question-indicator">
                 <div class="indicator-line horizontal"></div>
                 <div class="indicator-line vertical"></div>
               </div>
             </summary>
             <div class="faq-answer">
-              <p>Currently, you start the app when you want to organize files. But this is changing soon—the next update adds menu bar integration so Neatify works quietly in the background. You'll barely notice it's there, but your files will stay perfectly organized.</p>
+              <p>Your manual sorting creates an exhausting cycle: organize for hours, watch chaos return within days, repeat endlessly. Each messy folder triggers mental fatigue and decision paralysis. Neatify breaks this cycle permanently, one click replaces hours of mind-numbing work.</p>
             </div>
           </details>
 
@@ -501,7 +527,7 @@
               </div>
             </summary>
             <div class="faq-answer">
-              <p>macOS 14+ (Sonoma). Works great on Apple Silicon, Intel support coming soon.</p>
+              <p>macOS 14+ (Sonoma). Works on both Apple Silicon and Intel Macs.</p>
             </div>
           </details>
         </div>
@@ -550,7 +576,7 @@
               </div>
               <div class="timeline-content">
                 <h3 class="timeline-title">Multiple Reality Management</h3>
-                <p class="timeline-description">Simultaneous context switching. Client work, side projects, personal files—all organized simultaneously. AI detects context automatically.</p>
+                <p class="timeline-description">Simultaneous context switching. Client work, side projects, personal files, all organized simultaneously. AI detects context automatically.</p>
                 <p class="timeline-timing">12-18 months (cutting-edge AI)</p>
               </div>
             </div>

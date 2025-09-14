@@ -32,6 +32,10 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
 // Horizontal scroll: vertical-controlled horizontal panel track
 (function() {
   if (prefersReduced) return; // degrade to vertical stack
+
+  // Skip horizontal scroll logic on mobile devices
+  if (window.innerWidth <= 1200) return;
+
   const section = document.getElementById('deep-features');
   if (!section) return;
   const outer = section.querySelector('.hs__outer');
@@ -92,9 +96,30 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
     ticking = true;
   }
 
-  window.addEventListener('resize', recalc, { passive: true });
+  function onResize() {
+    // Re-check if we should disable horizontal scroll on resize
+    if (window.innerWidth <= 1200) {
+      // Reset any transforms and height when switching to mobile view
+      track.style.transform = 'none';
+      outer.style.height = 'auto';
+      return;
+    }
+    recalc();
+  }
+
+  // Make functions available globally for dynamic initialization
+  window.horizontalScrollRecalc = recalc;
+  window.horizontalScrollOnScroll = onScroll;
+
+  window.addEventListener('resize', onResize, { passive: true });
   window.addEventListener('scroll', onScroll, { passive: true });
-  recalc();
+
+  // Initial setup - check if mobile and set appropriate height
+  if (window.innerWidth <= 1200) {
+    outer.style.height = 'auto';
+  } else {
+    recalc();
+  }
   onScroll();
 })();
 
@@ -198,9 +223,12 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
   });
 })();
 
-// Optimized Custom Cursor with RAF
+// Optimized Custom Cursor with RAF - Desktop only
 (function() {
   if (prefersReduced) return;
+
+  // Only create cursor on devices with fine pointers (desktop/laptop)
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   
   const cursor = document.createElement('div');
   cursor.classList.add('cursor');
@@ -282,13 +310,13 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
 // Enhanced FAQ Animations
 (function() {
   if (prefersReduced) return;
-  
+
   const faqItems = document.querySelectorAll('.faq-item');
-  
+
   faqItems.forEach(item => {
     const summary = item.querySelector('summary');
     const content = item.querySelector('.faq-content');
-    
+
     if (summary) {
       summary.addEventListener('click', () => {
         // Add a small delay before the content reveals for smoother animation
@@ -299,5 +327,132 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
         }, 50);
       });
     }
+  });
+})();
+
+// Mobile/Desktop Features Management with Dynamic Switching
+(function() {
+  const mobileContainer = document.getElementById('mobile-features-content');
+  if (!mobileContainer) return;
+
+  // Mobile features data
+  const mobileFeatures = [
+    {
+      webp: 'asset/images/folderCleanerOutcome.webp',
+      fallback: 'asset/images/folderCleanerOutcome.png',
+      alt: 'One‑click organizer result',
+      title: 'Transform Chaos Into Order (In 1 click)',
+      description: 'That client project folder that looks like a tornado hit it? Your Desktop that\'s buried under months of screenshots and random downloads? Pick any disaster zone and watch Neatify transform it into a clean, logical structure. Images flow into Visual folders, documents land in Document categories, everything finds its perfect home. Your stress melts away as chaos becomes clarity.'
+    },
+    {
+      webp: 'asset/images/savedProject.webp',
+      fallback: 'asset/images/savedProject.png',
+      alt: 'Project Selection UI',
+      title: 'Switch Clients Without Losing Your Mind',
+      description: 'Monday you\'re designing logos for a tech startup. Tuesday it\'s website mockups for a restaurant chain. Wednesday brings presentation slides for a consulting firm. Each client needs different organization. One click switches your entire file system to match your current project. No mental gymnastics, no folder confusion, no files landing in the wrong place.'
+    },
+    {
+      webp: 'asset/images/homeScreen.webp',
+      fallback: 'asset/images/homeScreen.png',
+      alt: 'Start sorting from the app home',
+      title: 'Your Digital Assistant Never Sleeps',
+      description: 'Press Start and feel the relief. While you\'re designing, coding, or in client meetings, Neatify works behind the scenes. Every screenshot, every download, every asset gets moved to exactly where it belongs.'
+    },
+    {
+      webp: 'asset/images/savedRules.webp',
+      fallback: 'asset/images/savedRules.png',
+      alt: 'Custom rules creation interface',
+      title: 'Set Rules Once, Organized Forever',
+      description: 'Create simple rules like "PDFs → Documents folder" and "Images → Current project visuals." Set them once, forget them forever. No projects needed, no complex setup. Just pure automation that learns your workflow and keeps your files flowing exactly where you want them, every single time.'
+    }
+  ];
+
+  let mobileContentLoaded = false;
+  let horizontalScrollInitialized = false;
+
+  // Function to load mobile content
+  function loadMobileContent() {
+    if (mobileContentLoaded) return;
+
+    // Create mobile feature cards
+    mobileFeatures.forEach((feature, index) => {
+      const card = document.createElement('div');
+      card.className = 'feature-mobile-card';
+      card.style.setProperty('--stagger-delay', `${index * 150}ms`);
+
+      card.innerHTML = `
+        <div class="feature-mobile-image">
+          <picture>
+            <source srcset="${feature.webp}" type="image/webp">
+            <img src="${feature.fallback}" alt="${feature.alt}" loading="lazy" />
+          </picture>
+        </div>
+        <div class="feature-mobile-content">
+          <h3>${feature.title}</h3>
+          <p>${feature.description}</p>
+        </div>
+      `;
+
+      mobileContainer.appendChild(card);
+    });
+
+    // Add staggered entrance animation
+    const cards = mobileContainer.querySelectorAll('.feature-mobile-card');
+    cards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+
+      setTimeout(() => {
+        card.style.transition = 'all 0.6s ease-out';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 150);
+    });
+
+    mobileContentLoaded = true;
+  }
+
+  // Function to initialize horizontal scroll (for desktop)
+  function initializeHorizontalScroll() {
+    if (prefersReduced) return;
+    if (window.innerWidth <= 1200) return;
+
+    // Force re-initialization by calling both functions
+    if (typeof window.horizontalScrollRecalc === 'function' && typeof window.horizontalScrollOnScroll === 'function') {
+      setTimeout(() => {
+        // First recalculate dimensions
+        window.horizontalScrollRecalc();
+        // Then update scroll positions
+        window.horizontalScrollOnScroll();
+        // Also trigger a resize event to make sure everything is updated
+        const resizeEvent = new Event('resize');
+        window.dispatchEvent(resizeEvent);
+      }, 200);
+    }
+
+    horizontalScrollInitialized = true;
+  }
+
+  // Function to handle responsive switching
+  function handleResize() {
+    if (window.innerWidth <= 1200) {
+      // Mobile mode
+      loadMobileContent();
+      horizontalScrollInitialized = false; // Reset for next desktop switch
+    } else {
+      // Desktop mode - always force re-initialization
+      horizontalScrollInitialized = false; // Force re-init
+      initializeHorizontalScroll();
+    }
+  }
+
+  // Initial setup
+  handleResize();
+
+  // Listen for resize events with debouncing
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(handleResize, 100);
   });
 })();
