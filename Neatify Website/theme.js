@@ -1,0 +1,1 @@
+// Theme toggle removed - site uses dark theme only
