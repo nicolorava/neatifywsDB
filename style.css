@@ -80,7 +80,7 @@ background: conic-gradient(from 180deg at 50% 0%, #FFFFFF 0deg, rgba(128, 128, 1
 
 
 * { box-sizing: border-box; }
-html, body { height: 100dvh; margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
 /* Global gradient background that follows scroll */
 body::before {
@@ -100,8 +100,27 @@ body::before {
 .container { width:min(1100px,92vw); margin: 0 auto; padding-block: var(--space-16);}
 
 /* Header */
-.site-header { position:sticky; top:0; z-index:20; backdrop-filter:saturate(180%) blur(12px); background:rgba(255,255,255,0.9); box-shadow: var(--shadow-sm); }
-.site-header { background:var(--glass); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  background: var(--glass);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  min-height: 60px;
+}
+
+/* Mobile sticky fix */
+@media (max-width: 768px) {
+  .site-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+}
 .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 0; height: 10vh;}
 .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
 .brand-icon { width: clamp(32px, 8vw, 40px); aspect-ratio: 1; }
@@ -1635,7 +1654,7 @@ body::before {
 
   /* Performance optimizations */
   .feature-mobile-card {
-    contain: layout style paint;
+    /* contain: layout style paint; - Removed as it breaks sticky positioning */
     will-change: transform, opacity;
   }
 
@@ -3528,6 +3547,7 @@ a, button, input, textarea, select {
   }
 }
 
+
   /* Fix for mobile browser UI space */
   @supports (height: 100dvh) {
     body {
@@ -3542,4 +3562,3 @@ a, button, input, textarea, select {
       min-height: -webkit-fill-available;
     }
   }
-
