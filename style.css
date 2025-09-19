@@ -3527,19 +3527,3 @@ a, button, input, textarea, select {
     height: 18px;
   }
 }
-
-
-  /* Fix for mobile browser UI space */
-  @supports (height: 100dvh) {
-    body {
-      min-height: 100dvh;
-    }
-  }
-
-  /* Fallback for older browsers */
-  @supports not (height: 100dvh) {
-    body {
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-    }
-  }
