@@ -224,65 +224,65 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
 })();
 
 // Optimized Custom Cursor with RAF - Desktop only
-(function() {
+/* (function() {
   if (prefersReduced) return;
 
   // Only create cursor on devices with fine pointers (desktop/laptop)
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  
+
   const cursor = document.createElement('div');
   cursor.classList.add('cursor');
   document.body.appendChild(cursor);
-  
+
   let mouseX = 0;
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
-  
+
   // Track mouse position (no DOM updates here)
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
-  
+
   // Direct cursor following with RAF (no delay)
   function animateCursor() {
     // Direct positioning - no lerp delay
     cursorX = mouseX;
     cursorY = mouseY;
-    
+
     // Update position
     cursor.style.left = cursorX + 'px';
     cursor.style.top = cursorY + 'px';
-    
+
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
-  
+
   // Hover detection
   const hoverElements = 'a, button, [role="button"], input, select, textarea, .appstore-cta, .social-item, .faq-item summary, .footer-links a, .nav-link';
-  
+
   document.addEventListener('mouseover', (e) => {
     if (e.target.matches(hoverElements) || e.target.closest(hoverElements)) {
       cursor.classList.add('hover');
     }
   });
-  
+
   document.addEventListener('mouseout', (e) => {
     if (e.target.matches(hoverElements) || e.target.closest(hoverElements)) {
       cursor.classList.remove('hover');
     }
   });
-  
+
   // Hide/show cursor when leaving/entering window
   document.addEventListener('mouseleave', () => {
     cursor.style.opacity = '0';
   });
-  
+
   document.addEventListener('mouseenter', () => {
     cursor.style.opacity = '1';
   });
-})();
+})(); */
 
 // Card Stagger Animation
 (function() {
@@ -370,22 +370,22 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
   let mobileContentLoaded = false;
   let horizontalScrollInitialized = false;
 
-  // Function to load mobile content
+  // Enhanced function to load revolutionary mobile content
   function loadMobileContent() {
     if (mobileContentLoaded) return;
 
-    // Create mobile feature cards
+    // Create mobile feature cards with enhanced structure
     mobileFeatures.forEach((feature, index) => {
       const card = document.createElement('div');
       card.className = 'feature-mobile-card';
-      card.style.setProperty('--stagger-delay', `${index * 150}ms`);
+      card.style.setProperty('--stagger-delay', `${index * 200}ms`);
+
+      // Add magnetic hover effect tracking
+      card.setAttribute('data-magnetic', 'true');
 
       card.innerHTML = `
         <div class="feature-mobile-image">
-          <picture>
-            <source srcset="${feature.webp}" type="image/webp">
-            <img src="${feature.fallback}" alt="${feature.alt}" loading="lazy" />
-          </picture>
+          <img src="${feature.webp}" alt="${feature.alt}" loading="lazy" />
         </div>
         <div class="feature-mobile-content">
           <h3>${feature.title}</h3>
@@ -396,17 +396,107 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
       mobileContainer.appendChild(card);
     });
 
-    // Add staggered entrance animation
+    // Enhanced staggered entrance animation with magnetic effects
     const cards = mobileContainer.querySelectorAll('.feature-mobile-card');
+
+    // Set initial state
     cards.forEach((card, index) => {
       card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
+      card.style.transform = 'translateY(40px) scale(0.95)';
+      card.style.filter = 'blur(4px)';
+    });
 
+    // Animate in with enhanced timing
+    cards.forEach((card, index) => {
       setTimeout(() => {
-        card.style.transition = 'all 0.6s ease-out';
+        card.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
         card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, index * 150);
+        card.style.transform = 'translateY(0) scale(1)';
+        card.style.filter = 'blur(0px)';
+
+        // Add entrance sound effect (visual feedback)
+        card.style.boxShadow = '0 0 40px rgba(0, 238, 255, 0.3)';
+        setTimeout(() => {
+          card.style.boxShadow = '';
+        }, 600);
+
+      }, index * 200 + 100);
+    });
+
+    // Add enhanced magnetic hover effects
+    cards.forEach((card, index) => {
+      let isHovering = false;
+      let animationFrame;
+
+      const handleMouseMove = (e) => {
+        if (!isHovering) return;
+
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const deltaX = (e.clientX - centerX) * 0.1;
+        const deltaY = (e.clientY - centerY) * 0.1;
+
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+
+        animationFrame = requestAnimationFrame(() => {
+          card.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
+        });
+      };
+
+      card.addEventListener('mouseenter', () => {
+        isHovering = true;
+        card.style.transition = 'transform 0.3s ease-out';
+        document.addEventListener('mousemove', handleMouseMove);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        isHovering = false;
+        document.removeEventListener('mousemove', handleMouseMove);
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+
+        card.style.transition = 'transform 0.6s ease-out';
+        card.style.transform = 'translate(0px, 0px) scale(1)';
+      });
+
+      // Enhanced intersection observer for smooth active state management
+      let activeTransitionTimeout;
+
+      const observer = new IntersectionObserver((entries) => {
+        // Clear any pending transitions
+        if (activeTransitionTimeout) {
+          clearTimeout(activeTransitionTimeout);
+        }
+
+        // Debounce the state changes for smoother transitions
+        activeTransitionTimeout = setTimeout(() => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // First remove active state from all cards
+              cards.forEach(card => {
+                card.classList.remove('in-view');
+              });
+
+              // Then add active state to the visible card after a brief delay
+              setTimeout(() => {
+                entry.target.classList.add('in-view');
+              }, 50);
+
+            } else {
+              // Remove active state when out of view with smooth transition
+              setTimeout(() => {
+                entry.target.classList.remove('in-view');
+              }, 100);
+            }
+          });
+        }, 150); // Debounce delay for smoother transitions
+      }, {
+        threshold: 0.65,
+        rootMargin: '-15% 0px -15% 0px'
+      });
+
+      observer.observe(card);
     });
 
     mobileContentLoaded = true;
@@ -455,4 +545,73 @@ document.querySelectorAll('.faq-item summary').forEach((s) => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(handleResize, 100);
   });
+})();
+
+// Interactive Demo Section - Video Integration
+(function() {
+  if (prefersReduced) return;
+
+  const demoSection = document.querySelector('.demo-section');
+  if (!demoSection) return;
+
+  const demoSteps = demoSection.querySelectorAll('.demo-step');
+  const demoVideo = demoSection.querySelector('.demo-video-player');
+
+  let currentStep = 0;
+  let demoInterval;
+
+  // Auto-cycle through demo steps
+  function cycleDemoSteps() {
+    demoSteps.forEach(step => step.classList.remove('active'));
+    currentStep = (currentStep + 1) % demoSteps.length;
+    demoSteps[currentStep].classList.add('active');
+  }
+
+  // Start auto-cycling when demo comes into view
+  const demoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        demoInterval = setInterval(cycleDemoSteps, 4000);
+      } else {
+        if (demoInterval) clearInterval(demoInterval);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  demoObserver.observe(demoSection);
+
+  // Manual step interaction
+  demoSteps.forEach((step, index) => {
+    step.addEventListener('click', () => {
+      if (demoInterval) clearInterval(demoInterval);
+      demoSteps.forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+      currentStep = index;
+
+      setTimeout(() => {
+        demoInterval = setInterval(cycleDemoSteps, 4000);
+      }, 6000);
+    });
+  });
+
+  // Video event tracking
+  if (demoVideo) {
+    demoVideo.addEventListener('play', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'demo_video_play', {
+          event_category: 'engagement',
+          event_label: 'demo_section'
+        });
+      }
+    });
+
+    demoVideo.addEventListener('ended', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'demo_video_complete', {
+          event_category: 'engagement',
+          event_label: 'demo_section'
+        });
+      }
+    });
+  }
 })();

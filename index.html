@@ -130,11 +130,11 @@
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="#faq" class="nav-link">FAQ</a>
       </div>
-        <a id="appstore" href="https://apps.apple.com/" target="_blank" class="appstore-cta custom nav-cta" data-gtag="cta_hero">
+        <a id="appstore" href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom nav-cta" data-gtag="cta_hero">
             <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
             <div class="cta-text">
-            <span class="download-text">Download on the</span>
-            <span class="store-text">Mac App Store</span>
+            <!-- <span class="download-text">Free Beta's Live</span> -->
+            <span class="store-text">Try it Now!</span>
             </div>
         </a>
     </nav>
@@ -150,11 +150,11 @@
           <p class="subhead">Your Downloads folder is exploding. Your Desktop looks like a disaster zone. You've spent 20 minutes hunting for that client file you downloaded yesterday. What if every file found its home automatically, without you lifting a finger?</p>
           
           <div class="hero-ctas">
-            <a id="appstore" href="https://apps.apple.com/" target="_blank" class="appstore-cta custom" data-gtag="cta_hero">
+            <a id="appstore" href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom" data-gtag="cta_hero">
               <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
               <div class="cta-text">
-                <span class="download-text">Download on the</span>
-                <span class="store-text">Mac App Store</span>
+                <!-- <span class="download-text">Free Beta's Live</span> -->
+                <span class="store-text">Try it Now!</span>
               </div>
             </a>
           </div>
@@ -226,17 +226,51 @@
 
         <div class="value-cta">
           <p class="cta-trigger">Ready to reclaim your time?</p>
-          <a href="#pricing" class="appstore-cta custom large" data-gtag="cta_value">
+          <a href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom large" data-gtag="cta_value">
             <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
             <div class="cta-text">
-              <span class="download-text">Start free trial</span>
-              <span class="store-text">Mac App Store</span>
+              <!-- <span class="download-text">Free Beta's Live</span> -->
+              <span class="store-text">Try it Now!</span>
             </div>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- Interactive Demo Section - Peak Emotional Engagement Point -->
+    <section id="demo" class="demo-section separator">
+      <div class="container">
+        <div class="demo-header">
+          <h2 class="h2">Watch Your Chaos Disappear in 30 Seconds</h2>
+          <p class="demo-subtitle">See the exact moment when 847 scattered files become perfectly organized. No more searching. No more stress. Just pure relief.</p>
+        </div>
+
+        <!-- Demo Video Section -->
+        <div class="demo-video-wrapper">
+            <video
+              class="demo-video-player"
+              poster="asset/Demos/Neatify Full Demo.mp4"
+              controls
+              preload="metadata"
+              aria-label="Neatify full demonstration video">
+              <source src="asset/Demos/Neatify Full Demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Demo CTA -->
+        <div class="demo-cta">
+          <p class="cta-trigger">Ready to feel this relief yourself?</p>
+          <a href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom large" data-gtag="cta_demo">
+            <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
+            <div class="cta-text">
+              <!-- <span class="download-text">Free Beta's Live</span> -->
+              <span class="store-text">Try it Now!</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- Deep Features: Horizontal scroll section (Desktop only) -->
     <section id="deep-features" class="hs separator">
@@ -255,10 +289,7 @@
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <picture>
-                      <source srcset="asset/images/folderCleanerOutcome.webp" type="image/webp">
-                      <img src="asset/images/folderCleanerOutcome.png" alt="One‑click organizer result" />
-                    </picture>
+                    <img src="asset/images/folderCleanerOutcome.webp" alt="One‑click organizer result" />
                   </div>
                 </div>
               </div>
@@ -271,10 +302,7 @@
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <picture>
-                      <source srcset="asset/images/savedProject.webp" type="image/webp">
-                      <img src="asset/images/savedProject.png" alt="Project Selection UI" />
-                    </picture>
+                    <img src="asset/images/savedProject.webp" alt="Project Selection UI" />
                   </div>
                 </div>
               </div>
@@ -287,10 +315,7 @@
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <picture>
-                      <source srcset="asset/images/homeScreen.webp" type="image/webp">
-                      <img src="asset/images/homeScreen.png" alt="Start sorting from the app home" />
-                    </picture>
+                    <img src="asset/images/homeScreen.webp" alt="Start sorting from the app home" />
                   </div>
                 </div>
               </div>
@@ -303,10 +328,7 @@
                 </div>
                 <div class="panel-media">
                   <div class="media-frame">
-                    <picture>
-                      <source srcset="asset/images/savedRules.webp" type="image/webp">
-                      <img src="asset/images/savedRules.png" alt="Custom rules creation interface" />
-                    </picture>
+                    <img src="asset/images/savedRules.webp" alt="Custom rules creation interface" />
                   </div>
                 </div>
               </div>
@@ -317,8 +339,8 @@
     </section>
 
     <!-- Mobile Features: Optimized for touch devices -->
-    <section class="features-mobile separator">
-      <div class="container">
+    <section class="features-mobile">
+      <div class="container separator">
         <div class="section-head">
           <h2 class="h2">See Your Chaos Transform Into Order</h2>
           <p class="section-sub">Watch how Neatify turns digital disasters into organized perfection.</p>
@@ -398,7 +420,7 @@
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="pricing container separator">
+    <!-- <section id="pricing" class="pricing container separator">
       <div class="section-head">
         <h2 class="h2">What's Your Time Worth?</h2>
         <p class="section-sub">Spending 1 hour per week hunting for files = $2,600/year (at $50/hour rate). Missing one deadline due to file chaos = One lost client relationship. Neatify costs less than one billable hour per month.</p>
@@ -411,6 +433,9 @@
               <span class="currency" id="currency-symbol">$</span>
               <span class="amount">9.99</span>
               <span class="period">/month</span>
+            </div>
+            <div class="daily-price">
+              <span>Only $0.33/day</span>
             </div>
             <div class="trial-badge">
               <span>14-day free trial</span>
@@ -445,18 +470,17 @@
           </div>
           
           <div class="pricing-cta separator separator--top">
-            <a href="#" class="appstore-cta custom large" data-gtag="cta_pricing">
+            <a href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom large" data-gtag="cta_pricing">
               <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
               <div class="cta-text">
-                <span class="download-text">Download on the</span>
-                <span class="store-text">Mac App Store</span>
+                <span class="store-text">Try it Now!</span>
               </div>
             </a>
             <p class="pricing-note">Managed through the Mac App Store</p>
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- FAQ -->
     <section id="faq" class="faq container">
@@ -598,11 +622,11 @@
 
         <div class="value-cta">
           <p class="cta-trigger">You're not just buying file organization software. You're investing in the future of how humans interact with digital chaos.</p>
-          <a href="#pricing" class="appstore-cta custom large" data-gtag="cta_future">
+          <a href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom large" data-gtag="cta_future">
             <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
             <div class="cta-text">
-              <span class="download-text">Start Foundation Version</span>
-              <span class="store-text">Your future self will thank you</span>
+              <!-- <span class="download-text">Free Beta's Live</span> -->
+              <span class="store-text">Try it Now!</span>
             </div>
           </a>
         </div>
@@ -633,11 +657,11 @@
             <p class="footer-tagline">Make It Neat Now!</p>
           </div>
           <div class="footer-cta">
-            <a href="#" class="appstore-cta custom" data-gtag="cta_footer">
+            <a href="https://testflight.apple.com/join/Eyp3uwZS" target="_blank" class="appstore-cta custom" data-gtag="cta_footer">
               <svg class="icon apple-icon"><use href="#icon-apple"/></svg>
               <div class="cta-text">
-                <span class="download-text">Download on the</span>
-                <span class="store-text">Mac App Store</span>
+                <!-- <span class="download-text">Free Beta's Live</span> -->
+                <span class="store-text">Try it Now!</span>
               </div>
             </a>
           </div>
