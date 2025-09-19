@@ -79,6 +79,7 @@ background: conic-gradient(from 180deg at 50% 0%, #FFFFFF 0deg, rgba(128, 128, 1
 }
 
 
+html{height: 100vh}
 * { box-sizing: border-box; }
 html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
