@@ -101,8 +101,10 @@ body::before {
 
 /* Header */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
@@ -112,14 +114,9 @@ body::before {
   min-height: 60px;
 }
 
-/* Mobile sticky fix */
-@media (max-width: 768px) {
-  .site-header {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
+/* Add padding to main to compensate for fixed header */
+main {
+  padding-top: 60px;
 }
 .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 0; height: 10vh;}
 .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
